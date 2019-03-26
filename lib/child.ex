@@ -15,8 +15,7 @@ defmodule GenServerTimeoutBattery.Child do
 
   @impl true
   def init([child_id, timeout_duration, parent_pid]) do
-    IO.puts('Timeout of #{timeout_duration} set for')
-    IO.inspect(child_id)
+    IO.puts('Timeout of #{timeout_duration} set for #{child_id}')
     {
       :ok,
       %{
@@ -41,7 +40,7 @@ defmodule GenServerTimeoutBattery.Child do
   @impl true
   def handle_info(:timeout, state) do
     # Hibernates and lets the parent decide what to do.
-    IO.puts('Sending timeout for #{state.child_id}')
+    IO.puts('Sending timeout for child #{state.child_id} to parent')
     if is_pid(state.parent_process), do: send(state.parent_process, {:inactive, state.child_id})
 
     {

@@ -15,12 +15,6 @@ defmodule GenServerTimeoutBattery.Parent do
     GenServer.call(__MODULE__, {:stop_child, child_id})
   end
 
-  ###
-  #
-  # Server
-  #
-  ###
-
   @impl true
   def init(_args) do
     {

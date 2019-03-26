@@ -8,6 +8,7 @@ defmodule GenServerTimeoutBattery.Tests do
 
     assert {:ok, cpid} = Child.start_link(id, 2000, self())
 
+    # If this call to `get_data` is removed, test passes.
     assert "potato" == Child.get_data(id)
 
     assert_receive {:inactive, child_id}, 3000
@@ -22,6 +23,7 @@ defmodule GenServerTimeoutBattery.Tests do
 
     assert child_id = Parent.start_child(timeout_duration: 2000, reporter_process: self())
 
+    # If this call to `get_data` is removed, test passes.
     assert "potato" == Child.get_data(child_id)
 
     assert_receive {:terminated, child_id}, 3000
