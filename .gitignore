@@ -1,0 +1,30 @@
+# Compiled / built files
+_build
+dist
+
+# Coverage assets ("mix test --cover")
+cover
+
+# Dependencies
+deps
+node_modules
+
+# Generated docs output
+doc
+
+# Crashdump
+erl_crash.dump
+
+# Archive artifacts
+*.ez
+
+# Package tarball ("mix hex.build")
+*.tar
+
+# IDE stuff that changes too often
+.idea/workspace.xml
+.idea/libraries
+.idea/shelf
+
+# OS stuff
+.DS_Store
