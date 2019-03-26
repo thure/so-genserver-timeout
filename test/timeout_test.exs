@@ -4,9 +4,11 @@ defmodule GenServerTimeoutBattery.Tests do
   alias GenServerTimeoutBattery.{Parent, Child}
 
   test "child sends inactivity signal on timeout" do
-    id = make_ref()
+    id = UUID.uuid4(:hex)
 
     assert {:ok, cpid} = Child.start_link(id, 2000, self())
+
+    assert "potato" == Child.get_data(id)
 
     assert_receive {:inactive, child_id}, 3000
 
@@ -19,6 +21,8 @@ defmodule GenServerTimeoutBattery.Tests do
     assert {:ok, ppid} = Parent.start_link(name: Parent)
 
     assert child_id = Parent.start_child(timeout_duration: 2000, reporter_process: self())
+
+    assert "potato" == Child.get_data(child_id)
 
     assert_receive {:terminated, child_id}, 3000
 

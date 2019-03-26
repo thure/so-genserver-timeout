@@ -31,7 +31,7 @@ defmodule GenServerTimeoutBattery.Parent do
 
   @impl true
   def handle_call({:start_child, opts}, _from, state) do
-    child_id = UUID.uuid1()
+    child_id = UUID.uuid1(:hex)
 
     {:ok, sspid} =
       Child.start_link(
